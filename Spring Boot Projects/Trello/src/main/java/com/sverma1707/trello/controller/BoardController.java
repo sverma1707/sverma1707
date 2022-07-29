@@ -15,17 +15,17 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @PostMapping(value = "/board")
-    public Board createBoard(Board board) {
+    @PostMapping(value = "board")
+    public Board createBoard(@RequestBody Board board) {
         return boardService.createBoard(board);
     }
 
-    @GetMapping(value = "/board")
+    @GetMapping(value = "board")
     public List<Board> getAllBoards() {
         return boardService.getAllBoard();
     }
 
-    @PutMapping(value = "/borad/{id}")
+    @PutMapping(value = "board/{id}")
     public Board addTask(@RequestBody Task task, @PathVariable Integer id) {
         return boardService.addTask(id, task);
     }

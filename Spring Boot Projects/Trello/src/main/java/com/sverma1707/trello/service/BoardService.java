@@ -20,7 +20,13 @@ public class BoardService {
     TaskRepository taskRepository;
 
     public Board createBoard(Board board) {
-        return boardRepository.save(board);
+        //return boardRepository.save(board);
+        Board b = boardRepository.save(board);
+        List<Task> tasks = board.getTasks();
+        tasks.forEach(t -> t.setBoardId(b.getId()));
+        taskRepository.saveAll(tasks);
+        b.setTasks(tasks);
+        return boardRepository.save(b);
     }
 
     public Board getBoardById(Integer id) {

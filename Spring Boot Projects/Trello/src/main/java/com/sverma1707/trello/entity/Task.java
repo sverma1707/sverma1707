@@ -2,24 +2,28 @@ package com.sverma1707.trello.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class Task {
 
     @Id
-    Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer id;
 
     @Column
-    String title;
+    public String title;
 
     @Column
-    String assignee;
+    public String assignee;
+
+    @Column
+    public Integer boardId;
 }

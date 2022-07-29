@@ -2,6 +2,7 @@ package com.sverma1707.trello.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,16 +11,18 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
+@EqualsAndHashCode
 @NoArgsConstructor
 public class Board {
 
     @Id
-    Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer id;
 
     @Column
-    String title;
+    public String title;
 
     @Column
-    @OneToMany
-    List<Task> tasks;
+    @OneToMany(mappedBy = "id")
+    public List<Task> tasks;
 }
